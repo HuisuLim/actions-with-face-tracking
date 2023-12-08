@@ -67,12 +67,12 @@ def coordForEye(face_coord, frame):
     if last_left_coords is not None and last_right_coords is not None:
         left_x_coord = face_coord[0] + last_left_coords[0]
         left_y_coord = face_coord[1] + last_left_coords[1]
-        text_left_coord = f"coord: x={left_x_coord}, y={left_y_coord}"
+        text_left_coord = f"left_eye_center: x={left_x_coord}, y={left_y_coord}"
         cv2.putText(frame, text_left_coord, (0,20), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2)
         left_coord = (left_x_coord, left_y_coord)
         right_x_coord = face_coord[0] + last_right_coords[0]
         right_y_coord = face_coord[1] + last_right_coords[1]
-        text_right_coord = f"coord: x={right_x_coord}, y={right_y_coord}"
+        text_right_coord = f"right_eye_center: x={right_x_coord}, y={right_y_coord}"
         cv2.putText(frame, text_right_coord, (0,40), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2)
         right_coord = (right_x_coord, right_y_coord)
         center_eye_coord= ((left_coord[0]+right_coord[0])/2,(left_coord[1]+right_coord[1])/2)

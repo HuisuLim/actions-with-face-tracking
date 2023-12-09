@@ -140,6 +140,8 @@ If you press 'q' on the keyboard, it will stop running.
     https://github.com/kipr/opencv/tree/master/data/haarcascades
 - For processing the coordinates to decrease noise:  
     https://all-knowledge-of-the-world.tistory.com/19
+- To stop the execution
+    https://deep-learning-study.tistory.com/109
 &nbsp;  
 
 ## Licensing

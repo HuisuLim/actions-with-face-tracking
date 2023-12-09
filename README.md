@@ -1,6 +1,7 @@
 # Mouse control by eye tracking
 ## Introductions
 <img src = "./Readme/result.gif">
+
 It provides a camara based eye position tracking system. It **calculate the position of the center of your eyes** to **move your mouse** and  detecting your **eye blinking** to enable various function like **click** or **scroll**.  
 &nbsp;  
 
@@ -60,12 +61,16 @@ right_blink_frame_count = 0
 ### detecting face
 <img src = "./Readme/face_detect.gif">
 
+By using haarcascade_frontalface_default.xml you can detect front-face on the img. 
+And with the code inside of that function you can detect one of the largest faces it finds
 ```python
-def detect_face(frame, face_cascade)
+def detect_face(frame, face_cascade):
 ```
 ### detecting eyes
 <img src = "./Readme/eye_detect.gif">
 
+By using haarcascade_eye.xml you can detect eyes from the face-image that you already detected at detect_face function. 
+Sometimes the nostrils are recognized with the eyes, so to increase accuracy, the faces were divided to detect the eyes.
 ```python
 def detect_eyes(face_region, eye_cascade)
 ```
@@ -73,18 +78,21 @@ def detect_eyes(face_region, eye_cascade)
 ### detecting eye blinking
 <img src = "./Readme/blink_detect.gif">
 
+If the eye was not recognized for more than a few frames, it was made to recognize that the eye was blinking.
 ```python
 def detect_blink(left_eye, right_eye, frame):
 ```
 ### detecting coordinate for eye
 <img src = "./Readme/coord_detect.gif">
 
+Returns the coordinates of the eyes on the screen.
 ```python
 def coordForEye(face_coord, frame)
 ```
 &nbsp;  
 ## mouse_control.py
 ### filtering the noise of x-coordinates of center of eyes
+When moving the mouse using the received coordinates, the noise was so severe that it made a simple process. However, even if it is processed like this, the noise is so severe that we need to find a better way
 ```python
 def processingX(a):
 ```
@@ -92,11 +100,13 @@ def processingX(a):
 ```python
 def processingY(a):
 ```
-### mouse moving rules
+### moving mouse
+Use the processed coordinates to move the mouse.
 ```python
 def move_mouse_smoothly(left_eye, right_eye)
 ```
 ### various operations when eye blinks
+For now, I only add click and scroll, but you can add various functions.
 ```python
 def left_blink_op()
 ```
@@ -109,7 +119,10 @@ def both_blink_op()
 &nbsp;
 
 ## Reference
+for cascading:  
 https://github.com/kipr/opencv/tree/master/data/haarcascades
+For processing the coordinates to decrease noise:  
+https://all-knowledge-of-the-world.tistory.com/19
 &nbsp;  
 
 ## Licensing

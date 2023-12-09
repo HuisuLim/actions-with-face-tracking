@@ -22,11 +22,11 @@ last_center_coords = (855, 553)
 prev_center_coords = last_center_coords
 
 
-# 눈 감지 경계 설정
-movement_threshold = (2,20)  # 설정할 움직임 경계값
+#mouse_moving_threshold and sensitivity
+movement_threshold = (2,20)
 mouse_sensitivity = (15,15)
 
-# ... (이전과 동일한 코드)
+# to filter noise coordinate changes
 my_list_x = [0]
 my_list_y = [0]
 N = 2 # Filter order

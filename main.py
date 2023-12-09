@@ -1,7 +1,8 @@
 import cv2
+from globals import *
 from mouse_control import processingX, processingY, move_mouse_smoothly, left_blink_op, right_blink_op, both_blink_op
 from detection import detect_face, detect_eyes, coordForEye, detect_blink
-from globals import *
+
 
 
 
@@ -29,9 +30,7 @@ while True:
         elif blink_return == 3:
             right_blink_op()
 
-    text_center_coord = f"both eye center coord: x={last_center_coords[0]}, y={last_center_coords[1]}"
-    cv2.putText(frame, text_center_coord, (0,60), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2)
-    
+   
     # display the resulting frame
     cv2.imshow('Eyes Detection', frame) 
 

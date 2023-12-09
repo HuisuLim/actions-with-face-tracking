@@ -77,6 +77,9 @@ def coordForEye(face_coord, frame):
         right_coord = (right_x_coord, right_y_coord)
         center_eye_coord= ((left_coord[0]+right_coord[0])/2,(left_coord[1]+right_coord[1])/2)
         last_center_coords = center_eye_coord
+        text_center_coord = f"both eye center coord: x={last_center_coords[0]}, y={last_center_coords[1]}"
+        cv2.putText(frame, text_center_coord, (0,60), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2)
+    
         my_list_x.append(last_center_coords[0])
         my_list_y.append(last_center_coords[1])
         

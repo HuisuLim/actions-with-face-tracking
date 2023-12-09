@@ -3,11 +3,6 @@ from globals import *
 from mouse_control import processingX, processingY, move_mouse_smoothly, left_blink_op, right_blink_op, both_blink_op
 from detection import detect_face, detect_eyes, coordForEye, detect_blink
 
-
-
-
-
-
 # read input image
 video_device = 0						
 video = cv2.VideoCapture(video_device)

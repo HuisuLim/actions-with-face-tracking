@@ -36,8 +36,8 @@ mouse_sensitivity = (15,15)
 # to filter noise coordinate changes
 my_list_x = [0]
 my_list_y = [0]
-N = 2 # Filter order
-Wn = 0.9 # Cutoff frequency
+N = 2
+Wn = 0.9
 B, A = signal.butter(N, Wn, output='ba')
 
 min_blink_frames = 4

@@ -87,7 +87,7 @@ def detect_blink(left_eye, right_eye, frame):
 
 Returns the coordinates of the eyes on the screen.
 ```python
-def coordForEye(face_coord, frame)
+def coordForEye(face_coord, frame):
 ```
 &nbsp;  
 ## mouse_control.py
@@ -108,26 +108,43 @@ def move_mouse_smoothly(left_eye, right_eye)
 ### various operations when eye blinks
 For now, I only add click and scroll, but you can add various functions.
 ```python
-def left_blink_op()
+def left_blink_op():
 ```
 ```python
-def right_blink_op()
+def right_blink_op():
 ```
 ```python
-def both_blink_op()
+def both_blink_op():
 ```  
 &nbsp;
 
+## main.py
+```python
+video_device = 0						
+video = cv2.VideoCapture(video_device)
+```
+Adjust this if you want to change the video input device
+```python
+if cv2.waitKey(1) & 0xFF == ord('q'):
+    break
+```
+If you press 'q' on the keyboard, it will stop running.
+
+
+
+&nbsp;
 ## Reference
-for cascading:  
-https://github.com/kipr/opencv/tree/master/data/haarcascades
-For processing the coordinates to decrease noise:  
-https://all-knowledge-of-the-world.tistory.com/19
+- for initial framework
+    https://docs.opencv.org/4.x/d2/d99/tutorial_js_face_detection.html
+- haarcascade_eye.xml, haarcascade_frontalface_default.xml for cascading:
+    https://github.com/kipr/opencv/tree/master/data/haarcascades
+- For processing the coordinates to decrease noise:  
+    https://all-knowledge-of-the-world.tistory.com/19
 &nbsp;  
 
 ## Licensing
 This project is released by HuisuLim and following MIT LICENSE.
-If you want to get more information, viewing **LICENSE** file would help you.
+If you want to get more information about MIT LICENSE, viewing **LICENSE** file would help you.
 
 
 

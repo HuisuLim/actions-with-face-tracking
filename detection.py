@@ -82,10 +82,8 @@ def coordForEye(face_coord, frame):
     
         my_list_x.append(last_center_coords[0])
         my_list_y.append(last_center_coords[1])
-        
         return last_center_coords
     else:
-
         return last_center_coords
     
 
@@ -106,17 +104,14 @@ def detect_blink(left_eye, right_eye, frame):
         right_blink_frame_count = 0
 
     if left_blink_frame_count >= min_blink_frames and max_blink_frames>left_blink_frame_count and right_blink_frame_count >= min_blink_frames and right_blink_frame_count<max_blink_frames:
-        print("양쪽 눈 깜빡임 감지")
         text_both_blink = "both blink"
         cv2.putText(frame, text_both_blink, (0,150), cv2.FONT_HERSHEY_SIMPLEX, 1.5, (255, 0, 0), 2)
         return 1
     elif left_blink_frame_count >= min_blink_frames and left_blink_frame_count < max_blink_frames:
-        print("왼쪽 눈 깜빡임 감지")
         text_left_blink = "left blink"
         cv2.putText(frame, text_left_blink, (0,150), cv2.FONT_HERSHEY_SIMPLEX, 1.5, (255, 0, 0), 2)
         return 2
     elif right_blink_frame_count >= min_blink_frames and right_blink_frame_count < max_blink_frames:
-        print("오른쪽 눈 깜빡임 감지")
         text_right_blink = "right blink"
         cv2.putText(frame, text_right_blink, (0,150), cv2.FONT_HERSHEY_SIMPLEX, 1.5, (255, 0, 0), 2)
         return 3

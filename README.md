@@ -1,5 +1,6 @@
 # Mouse control by eye tracking
 ## Introductions
+<img src = "./Readme/result.gif">
 It provides a camara based eye position tracking system. It **calculate the position of the center of your eyes** to **move your mouse** and  detecting your **eye blinking** to enable various function like **click** or **scroll**.  
 &nbsp;  
 
@@ -57,20 +58,29 @@ right_blink_frame_count = 0
 
 ## detection.py
 ### detecting face
+<img src = "./Readme/face_detect.gif">
+
 ```python
 def detect_face(frame, face_cascade)
 ```
 ### detecting eyes
+<img src = "./Readme/eye_detect.gif">
+
 ```python
 def detect_eyes(face_region, eye_cascade)
 ```
-### detecting coordinate for eye
-```python
-def coordForEye(face_coord, frame)
-```
+
 ### detecting eye blinking
+<img src = "./Readme/blink_detect.gif">
+
 ```python
 def detect_blink(left_eye, right_eye, frame):
+```
+### detecting coordinate for eye
+<img src = "./Readme/coord_detect.gif">
+
+```python
+def coordForEye(face_coord, frame)
 ```
 &nbsp;  
 ## mouse_control.py
@@ -105,6 +115,8 @@ https://github.com/kipr/opencv/tree/master/data/haarcascades
 ## Licensing
 This project is released by HuisuLim and following MIT LICENSE.
 If you want to get more information, viewing **LICENSE** file would help you.
+
+
 
 
 

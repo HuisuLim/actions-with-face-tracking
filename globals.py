@@ -3,10 +3,14 @@ from scipy import signal
 import matplotlib.pyplot as plt
 import numpy as np
 import pyautogui
+import os
 pyautogui.FAILSAFE = False
 
-face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
-eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
+script_dir = os.path.dirname(os.path.abspath(__file__))
+face_cascade_path = os.path.join(script_dir, 'source', 'haarcascade_frontalface_default.xml')
+face_cascade = cv2.CascadeClassifier(face_cascade_path)
+eye_cascade_path = os.path.join(script_dir, 'source', 'haarcascade_eye.xml')
+eye_cascade = cv2.CascadeClassifier(eye_cascade_path)
 
 # To keep when undetected 
 last_left = None
@@ -18,9 +22,12 @@ last_right_coords = None
 last_detected_face = None
 last_detected_face_coords = None
 
-last_center_coords = (855, 553)
-prev_center_coords = last_center_coords
 
+screen_width, screen_height = pyautogui.size()
+screen_center_coord = (screen_width // 2, screen_height // 2)
+
+last_center_coords = (screen_center_coord[0], screen_center_coord[1])
+prev_center_coords = last_center_coords
 
 #mouse_moving_threshold and sensitivity
 movement_threshold = (2,20)
@@ -33,7 +40,8 @@ N = 2 # Filter order
 Wn = 0.9 # Cutoff frequency
 B, A = signal.butter(N, Wn, output='ba')
 
-min_blink_frames = 5
+min_blink_frames = 4
+max_blink_frames = 6
 left_blink_frame_count = 0
 right_blink_frame_count = 0
 

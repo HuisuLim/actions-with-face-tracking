@@ -68,17 +68,17 @@ def coordForEye(face_coord, frame):
         left_x_coord = face_coord[0] + last_left_coords[0]
         left_y_coord = face_coord[1] + last_left_coords[1]
         text_left_coord = f"left_eye_center: x={left_x_coord}, y={left_y_coord}"
-        cv2.putText(frame, text_left_coord, (0,20), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2)
+        cv2.putText(frame, text_left_coord, (0,30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
         left_coord = (left_x_coord, left_y_coord)
         right_x_coord = face_coord[0] + last_right_coords[0]
         right_y_coord = face_coord[1] + last_right_coords[1]
         text_right_coord = f"right_eye_center: x={right_x_coord}, y={right_y_coord}"
-        cv2.putText(frame, text_right_coord, (0,40), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2)
+        cv2.putText(frame, text_right_coord, (0,60), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
         right_coord = (right_x_coord, right_y_coord)
         center_eye_coord= ((left_coord[0]+right_coord[0])/2,(left_coord[1]+right_coord[1])/2)
         last_center_coords = center_eye_coord
         text_center_coord = f"both eye center coord: x={last_center_coords[0]}, y={last_center_coords[1]}"
-        cv2.putText(frame, text_center_coord, (0,60), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2)
+        cv2.putText(frame, text_center_coord, (0,90), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
     
         my_list_x.append(last_center_coords[0])
         my_list_y.append(last_center_coords[1])
@@ -91,7 +91,7 @@ def coordForEye(face_coord, frame):
 
 def detect_blink(left_eye, right_eye, frame):
     global left_blink_frame_count, right_blink_frame_count
-    global min_blink_frames
+    global min_blink_frames, max_blink_frames
     
     left_eye_detected = left_eye is not None
     right_eye_detected = right_eye is not None
@@ -105,18 +105,20 @@ def detect_blink(left_eye, right_eye, frame):
     else:
         right_blink_frame_count = 0
 
-    if left_blink_frame_count >= min_blink_frames and right_blink_frame_count >= min_blink_frames:
+    if left_blink_frame_count >= min_blink_frames and max_blink_frames>left_blink_frame_count and right_blink_frame_count >= min_blink_frames and right_blink_frame_count<max_blink_frames:
         print("양쪽 눈 깜빡임 감지")
+        text_both_blink = "both blink"
+        cv2.putText(frame, text_both_blink, (0,150), cv2.FONT_HERSHEY_SIMPLEX, 1.5, (255, 0, 0), 2)
         return 1
-    elif left_blink_frame_count >= min_blink_frames and right_blink_frame_count < min_blink_frames:
+    elif left_blink_frame_count >= min_blink_frames and left_blink_frame_count < max_blink_frames:
         print("왼쪽 눈 깜빡임 감지")
         text_left_blink = "left blink"
-        cv2.putText(frame, text_left_blink, (500,20), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2)
+        cv2.putText(frame, text_left_blink, (0,150), cv2.FONT_HERSHEY_SIMPLEX, 1.5, (255, 0, 0), 2)
         return 2
-    elif right_blink_frame_count >= min_blink_frames and left_blink_frame_count < min_blink_frames:
+    elif right_blink_frame_count >= min_blink_frames and right_blink_frame_count < max_blink_frames:
         print("오른쪽 눈 깜빡임 감지")
         text_right_blink = "right blink"
-        cv2.putText(frame, text_right_blink, (500,20), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2)
+        cv2.putText(frame, text_right_blink, (0,150), cv2.FONT_HERSHEY_SIMPLEX, 1.5, (255, 0, 0), 2)
         return 3
     else:
         return -1

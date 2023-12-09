@@ -11,15 +11,18 @@ from detection import detect_face, detect_eyes, coordForEye, detect_blink
 # read input image
 video_device = 0						
 video = cv2.VideoCapture(video_device)
-pyautogui.moveTo(855, 553, duration=0.1, tween=pyautogui.easeInOutQuad)
+pyautogui.moveTo(screen_center_coord[0], screen_center_coord[1], duration=0.1, tween=pyautogui.easeInOutQuad)
 
 while True:
     _, frame = video.read()
     frame = cv2.flip(frame, 1)
     face_frame, face_coord = detect_face(frame, face_cascade)
+
     if face_frame is not None:
+        
         left_eye, right_eye = detect_eyes(face_frame, eye_cascade)
         coordForEye(face_coord, frame)
+    
         blink_return = detect_blink(left_eye, right_eye, frame)
         if blink_return == -1:
             move_mouse_smoothly(left_eye, right_eye)
@@ -29,8 +32,8 @@ while True:
             left_blink_op()
         elif blink_return == 3:
             right_blink_op()
+  
 
-   
     # display the resulting frame
     cv2.imshow('Eyes Detection', frame) 
 

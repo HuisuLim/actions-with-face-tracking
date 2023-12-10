@@ -9,7 +9,7 @@ It **calculate the coordinates of the center of your eyes** to **move your mouse
 And it detects your **eye blinking** to enable various function like **click** or **scroll**. If you want other functions, modify
 left_blink_op(), right_blink_op(), both_blink_op()in mouse_control.py.  
 &nbsp;  
-If this project is developed a little more, It will help you in a difficult situation to use your hands.
+If this project is developed a little more, It will help you in a difficult situation to use your hands.  
 
 &nbsp;  
 
@@ -66,6 +66,7 @@ right_blink_frame_count = 0
 &nbsp;  
 
 ## detection.py
+If you can't detect it well, shine a light on your face and brighten it
 ### detecting face
 <img src = "./Readme/face_detect.gif">
 

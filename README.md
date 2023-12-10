@@ -1,8 +1,16 @@
-# Mouse control by eye tracking
+# Actions-with-face-tracking
 ## Introductions
 <img src = "./Readme/result.gif">
 
-It provides a camara based eye position tracking system. It **calculate the position of the center of your eyes** to **move your mouse** and  detecting your **eye blinking** to enable various function like **click** or **scroll**.  
+
+This project tracks face and eyes in face from camera by using **haarcascade_eye.xml, haarcascade_frontalface_default.xml.**  
+It **calculate the coordinates of the center of your eyes** to **move your mouse**   
+&nbsp;  
+And it detects your **eye blinking** to enable various function like **click** or **scroll**. If you want other functions, modify
+left_blink_op(), right_blink_op(), both_blink_op()in mouse_control.py.  
+&nbsp;  
+If this project is developed a little more, It will help you in a difficult situation to use your hands.
+
 &nbsp;  
 
 ## Required library
@@ -141,7 +149,7 @@ If you press 'q' on the keyboard, it will stop running.
 - For processing the coordinates to decrease noise:  
     https://all-knowledge-of-the-world.tistory.com/19
 - To stop the execution
-    https://deep-learning-study.tistory.com/109
+    https://deep-learning-study.tistory.com/109  
 &nbsp;  
 
 ## Licensing
